@@ -9,7 +9,6 @@ import i18n from "i18next";
 
 const CONFIG = {
   locales: ["zh", "en"],
-  fallbackLocale: "zh",
 };
 
 const localeDir = path.join(process.cwd(), "src", "locales");
@@ -31,8 +30,9 @@ export function getI18nPaths() {
 }
 
 export function getI18nProps(ctx: any): I18nProps {
-  const locale = ctx.params?.locale || CONFIG.fallbackLocale;
-  if (!CONFIG.locales.includes(locale)) {
+  const locale = ctx.params?.locale;
+
+  if (!locale || !CONFIG.locales.includes(locale)) {
     throw new Error(`Invalid locale ${locale}`);
   }
 
