@@ -59,9 +59,7 @@ export function getI18nProps(ctx: any): I18nProps {
     _i18n: {
       locale,
       locales: CONFIG.locales,
-      resource: {
-        [locale]: resource,
-      },
+      resource,
     },
   };
 }

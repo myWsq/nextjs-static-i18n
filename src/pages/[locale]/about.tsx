@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { StaticI18nLink } from "../../i18n-browser";
 import { getI18nPaths, getI18nProps } from "../../i18n-server";
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -22,7 +23,7 @@ export default function About() {
   return (
     <div>
       {t("introduction")}
-      <Link href={`/${i18n.language}`}>Home</Link>
+      <StaticI18nLink href="/">Home</StaticI18nLink>
     </div>
   );
 }
