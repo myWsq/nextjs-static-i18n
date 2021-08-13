@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { StaticI18nLink } from "../../i18n-browser";
 import { getI18nPaths, getI18nProps } from "../../i18n-server";
@@ -18,7 +17,7 @@ export const getStaticProps: GetStaticProps = (ctx) => {
 };
 
 export default function About() {
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   return (
     <div>
