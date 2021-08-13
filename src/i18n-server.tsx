@@ -2,7 +2,6 @@ import yaml from "js-yaml";
 import fs from "fs";
 import path from "path";
 import glob from "fast-glob";
-import _ from "lodash";
 import { AppProps } from "next/app";
 import { I18nextProvider } from "react-i18next";
 import i18n from "i18next";
@@ -41,17 +40,13 @@ export function getI18nProps(ctx: any): I18nProps {
   const nsDir = path.join(localeDir, locale);
 
   if (fs.existsSync(nsDir)) {
-    const files = glob.sync(path.join(nsDir, "**/*.{yaml,yml}"));
+    const files = glob.sync(path.join(nsDir, "*.{yaml,yml}"));
+
     files.forEach((file) => {
       const data = fs.readFileSync(file).toString();
       const schema = yaml.load(data) || null;
-      const ns = file
-        .replace(nsDir, "")
-        .replace(path.extname(file), "")
-        .split(path.sep)
-        .filter((s) => s)
-        .join(".");
-      _.set(resource, ns, schema);
+      const ns = path.basename(file, path.extname(file));
+      resource[ns] = schema;
     });
   }
 
