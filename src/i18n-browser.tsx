@@ -24,7 +24,9 @@ export function withStaticI18n(App: (props: AppProps) => any) {
         // load resource synchronously
         initImmediate: false,
       });
+
       instance.init();
+
       return (
         <I18nextProvider i18n={instance}>
           <App {...props}></App>
