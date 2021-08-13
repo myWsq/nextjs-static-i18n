@@ -11,7 +11,7 @@ $ npm install
 ## Build and export
 
 ```shell
-$ npm run build & npm run export
+$ npm run build && npm run export
 ```
 
 And checkout the `out` folder.
