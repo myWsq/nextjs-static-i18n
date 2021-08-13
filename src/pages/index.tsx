@@ -16,7 +16,7 @@ export default function Index({ locales }) {
   const router = useRouter();
 
   // language detection
-  // not recommended for production, use server redirection instead of this
+  // not recommended for production, use servers-side redirection instead of this
   useEffect(() => {
     for (const locale of locales) {
       for (const lang of navigator.languages) {
