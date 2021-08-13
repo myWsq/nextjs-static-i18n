@@ -1,1 +1,1 @@
-module.exports = { basePath: "/next.js-static-i18n" };
+module.exports = { basePath: "/nextjs-static-i18n" };
