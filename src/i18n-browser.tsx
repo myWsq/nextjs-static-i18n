@@ -5,7 +5,7 @@ import { I18nProps } from "./i18n-server";
 import Link, { LinkProps } from "next/link";
 import { useTranslation } from "react-i18next";
 
-export function withI18n(App: (props: AppProps) => any) {
+export function withStaticI18n(App: (props: AppProps) => any) {
   return (props: AppProps) => {
     const { _i18n } = props.pageProps as I18nProps;
 
@@ -18,10 +18,10 @@ export function withI18n(App: (props: AppProps) => any) {
           [locale]: resource,
         },
         react: {
-          // SSR 不支持
+          // ssr doesn't support'
           useSuspense: false,
         },
-        // 同步加载资源
+        // load resource synchronously
         initImmediate: false,
       });
       instance.init();

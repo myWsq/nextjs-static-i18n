@@ -1,6 +1,6 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from "next/app";
-import { withI18n } from "../i18n-browser";
+import { withStaticI18n } from "../i18n-browser";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
@@ -18,4 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 //   return { ...appProps }
 // }
 
-export default withI18n(MyApp);
+export default withStaticI18n(MyApp);
