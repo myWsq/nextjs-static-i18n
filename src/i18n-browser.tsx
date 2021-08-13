@@ -4,6 +4,7 @@ import i18n from "i18next";
 import { I18nProps } from "./i18n-server";
 import Link, { LinkProps } from "next/link";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 export function withStaticI18n(App: (props: AppProps) => any) {
   return (props: AppProps) => {
@@ -38,18 +39,24 @@ export function withStaticI18n(App: (props: AppProps) => any) {
   };
 }
 
-export function StaticI18nLink(props: React.PropsWithChildren<LinkProps>) {
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+type StaticI18LinkProps = PartialBy<LinkProps, "href">;
+
+export function StaticI18nLink(
+  props: React.PropsWithChildren<StaticI18LinkProps>
+) {
   const { i18n } = useTranslation();
+  const router = useRouter();
+
   const locale = props.locale || i18n.language || "";
   if (!locale) {
-    return <Link {...props}></Link>;
+    const href = props.href || router.asPath;
+    return <Link {...props} href={href}></Link>;
   } else {
-    return (
-      <Link
-        {...props}
-        href={`/${locale}${props.href}`}
-        locale={undefined}
-      ></Link>
-    );
+    const href = props.href
+      ? `/${locale}${props.href}`
+      : router.pathname.replace("[locale]", locale);
+    return <Link {...props} href={href} locale={undefined}></Link>;
   }
 }
